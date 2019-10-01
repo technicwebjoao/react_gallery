@@ -6,7 +6,7 @@ const Content = ({
   likePhotos
 }) => {
   return <h2 className='mb-4'>
-    Favorite photos' number: {Object.keys(likePhotos).length}
+    Number of favorite images: {Object.keys(likePhotos).length}
   </h2>
 };
 

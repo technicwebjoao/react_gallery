@@ -5,3 +5,9 @@
   border: 1px solid #ddd;
   overflow: auto;
 }
+
+.custom-overlay-wrapper {
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  width: 100%;
+}

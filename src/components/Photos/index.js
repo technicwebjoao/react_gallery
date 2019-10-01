@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PaginationComponent from 'react-reactstrap-pagination';
 import Gallery from 'react-grid-gallery';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { getPhotos, toggleFavoritePhoto } from '../../actions';
 import './styles.css';
 
@@ -19,12 +22,25 @@ const Photos = ({
   const [selectedPage, setSelectedPage] = useState(1);
 
   useEffect(() => {
-    loadPhotos();
+    loadPhotos(1, pageLimit);
   }, []);
 
   useEffect(() => {
     manipulatePhotos();
   }, [loading, likePhotos]);
+
+  const onclickFavoritePhoto = (e, id) => {
+    e.preventDefault();
+    toggleFavoritePhoto(id);
+  };
+
+  const customOverlay = (id, isLike, title) => (
+    <div className='d-flex flex-row justify-content-center align-items-center p-2 custom-overlay-wrapper' onClick={(e) => e.preventDefault()}>
+      <Button color={isLike ? 'warning' : 'primary'} onClick={(e) => onclickFavoritePhoto(e, id)}>
+        <FontAwesomeIcon icon={isLike ? 'thumbs-down': 'thumbs-up'} />
+      </Button>
+    </div>
+  );
 
   const manipulatePhotos = () => {
     const imgs = photos.map(photo => {
@@ -32,10 +48,9 @@ const Photos = ({
         id: photo.id,
         src: photo.url,
         thumbnail: photo.thumbnailUrl,
-        thumbnailWidth: 320,
-        thumbnailHeight: 174,
         isSelected: !!likePhotos[photo.id],
-        caption: photo.title
+        caption: photo.title,
+        thumbnailCaption: customOverlay(photo.id, !!likePhotos[photo.id], photo.title),
       };
     });
 
@@ -47,17 +62,12 @@ const Photos = ({
     setSelectedPage(selectedPage);
   };
 
-  const onSelectImage = (index, photo) => {
-    toggleFavoritePhoto(photo.id);
-  };
-
   return <div className='d-flex flex-column'>
     <div className='gallery-wrapper'>
       <Gallery
         images={images}
         backdropClosesModal={true}
-        onClickImage={()=>{}}
-        onSelectImage={onSelectImage} />
+        enableImageSelection={false} />
     </div>
 
     <div className='mt-4'>

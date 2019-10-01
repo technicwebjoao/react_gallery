@@ -5,7 +5,7 @@ const initialState = {
   photos: [],
   likePhotos: {},
   count: 0,
-  limit: 10
+  limit: 20
 };
 
 const reducer = (state = initialState, action) => {
