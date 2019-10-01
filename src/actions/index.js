@@ -1,12 +1,7 @@
-import { GET_PHOTOS, TOGGLE_FAVORITE_PHOTO } from '../types';
+import { GET_PHOTOS, PHOTOS_RECEIVED, TOGGLE_FAVORITE_PHOTO } from '../types';
 
-export const getPhotos = (page, limit) => ({
-  type: GET_PHOTOS,
-  page,
-  limit
-});
+import { createAction } from 'redux-actions';
 
-export const toggleFavoritePhoto = (id) => ({
-  type: TOGGLE_FAVORITE_PHOTO,
-  id
-});
+export const getPhotos = createAction(GET_PHOTOS);
+export const receivePhotos = createAction(PHOTOS_RECEIVED);
+export const toggleFavoritePhoto = createAction(TOGGLE_FAVORITE_PHOTO);

@@ -22,7 +22,10 @@ const Photos = ({
   const [selectedPage, setSelectedPage] = useState(1);
 
   useEffect(() => {
-    loadPhotos(1, pageLimit);
+    loadPhotos({
+      page: 1,
+      limit: pageLimit
+    });
   }, []);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const Photos = ({
 
   const onclickFavoritePhoto = (e, id) => {
     e.preventDefault();
-    toggleFavoritePhoto(id);
+    toggleFavoritePhoto({ id });
   };
 
   const customOverlay = (id, isLike, title) => (
@@ -60,7 +63,10 @@ const Photos = ({
   };
 
   const handleSelected = (selectedPage) => {
-    loadPhotos(selectedPage, pageLimit);
+    loadPhotos({
+      page: selectedPage,
+      limit: pageLimit
+    });
     setSelectedPage(selectedPage);
   };
 

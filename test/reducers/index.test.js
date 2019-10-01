@@ -27,8 +27,10 @@ describe('In Reducers', () => {
     const count = 1;
     const action = {
       type: PHOTOS_RECEIVED,
-      photos,
-      count
+      payload: {
+        photos,
+        count
+      }
     };
     expect(reducers(initialState, action)).toEqual({
       loading: false,
@@ -43,7 +45,9 @@ describe('In Reducers', () => {
     const id = 1;
     const action = {
       type: TOGGLE_FAVORITE_PHOTO,
-      id
+      payload: {
+        id
+      }
     };
     expect(reducers(initialState, action).likePhotos).toEqual({
       1: true

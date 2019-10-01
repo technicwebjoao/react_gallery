@@ -13,14 +13,13 @@ describe('In sagas,', () => {
       url: 'https://test.com/1.png'
     }];
     const count = 1;
-    const generator = fetchPhotos({ page, limit });
+    let payload = { page, limit };
+    const generator = fetchPhotos({ payload });
     expect(generator.next().value).toEqual(call(loadPagePhotos, page, limit));
-    expect(generator.next({
-      photos,
-      count
-    }).value)
+    payload = { photos, count };
+    expect(generator.next(payload).value)
       .toEqual(put(
-        { type: PHOTOS_RECEIVED, photos, count }
+        { type: PHOTOS_RECEIVED, payload }
       ));
   });
 
@@ -29,11 +28,13 @@ describe('In sagas,', () => {
     const limit = 10;
     const photos = [];
     const count = 0;
-    const generator = fetchPhotos({ page, limit });
+    let payload = { page, limit };
+    const generator = fetchPhotos({ payload });
     expect(generator.next().value).toEqual(call(loadPagePhotos, page, limit));
+    payload = { photos, count };
     expect(generator.throw('error').value)
       .toEqual(put(
-        { type: PHOTOS_RECEIVED, photos, count }
+        { type: PHOTOS_RECEIVED, payload }
       ));
   });
 });
