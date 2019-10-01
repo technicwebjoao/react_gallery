@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - react
 - redux
 - redux-Saga
+- redux-actions
 - jest
 - reactstrap
 - react-grid-gallery
