@@ -35,28 +35,4 @@ const reducer = handleActions(
   initState
 );
 
-// const reducer = (state = initState, action) => {
-//   switch (action.type) {
-//     case GET_PHOTOS:
-//       return { ...state, loading: true };
-//     case PHOTOS_RECEIVED:
-//       return {
-//         ...state,
-//         photos: action.photos,
-//         count: action.count,
-//         loading: false
-//       }
-//     case TOGGLE_FAVORITE_PHOTO:
-//       const updatedlikePhotos = Object.assign({}, state.likePhotos);
-//       updatedlikePhotos[action.id] ? delete updatedlikePhotos[action.id] : updatedlikePhotos[action.id] = true;
-
-//       return {
-//         ...state,
-//         likePhotos: updatedlikePhotos
-//       };
-//     default: 
-//       return state;
-//   }
-// };
-
 export default reducer;
