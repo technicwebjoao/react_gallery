@@ -1,5 +1,6 @@
 import { put, takeLatest, all, call } from 'redux-saga/effects';
 import { GET_PHOTOS, PHOTOS_RECEIVED } from '../types';
+import { receivePhotos } from '../actions';
 import { loadPagePhotos } from '../utils/api';
 
 export function* fetchPhotos({ payload: { page, limit } }) {
@@ -20,7 +21,7 @@ export function* fetchPhotos({ payload: { page, limit } }) {
     const payload = {
       photos, count
     };
-    yield put({ type: PHOTOS_RECEIVED, payload });
+    yield put(receivePhotos(payload));
   }
 }
 function* actionWatcher() {
