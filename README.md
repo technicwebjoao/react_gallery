@@ -1,5 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# React Gallery
+
+## Technologies
+- react
+- redux
+- redux-Saga
+- jest
+- reactstrap
+- react-grid-gallery
+- axios
+- react-fontawesome
+- redux-logger
+
 ## Available Scripts
 
 In the project directory, you can run:

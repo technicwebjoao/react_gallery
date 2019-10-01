@@ -47,6 +47,8 @@ const Photos = ({
       return {
         id: photo.id,
         src: photo.url,
+        thumbnailWidth: 320,
+        thumbnailHeight: 320,
         thumbnail: photo.thumbnailUrl,
         isSelected: !!likePhotos[photo.id],
         caption: photo.title,

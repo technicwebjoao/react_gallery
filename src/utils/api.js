@@ -2,15 +2,16 @@ import axios from 'axios';
 const URL = 'https://jsonplaceholder.typicode.com/photos';
 
 export const loadPagePhotos = async (page = 1, limit = 10) => {
-  const response = await axios.get(`${URL}?_page=${page}&_limit=${limit}`);
+  const res = await axios.get(`${URL}?_page=${page}&_limit=${limit}`);
 
-  if (response.status >= 200 && response.status < 300) {
-    const count =
-      response.headers['x-total-count'] ?
-      parseInt(response.headers['x-total-count']) :
-      0;
+  if (res.status >= 200 && res.status < 300) {
+    let count = 0;
 
-    return { photos: response.data, count };
+    if (res.headers['x-total-count']) {
+      count = parseInt(res.headers['x-total-count'], 10);
+    }
+
+    return { photos: res.data, count };
   } else {
     throw new Error('Sever error');
   }
